@@ -8,7 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class TesteApiController {
 
     @GetMapping("/teste-api")
-    private String teste() {
+    public String teste() {
         return "Sucesso";
+    }
+
+    @GetMapping("/teste-api-bem-vindo")
+    public String testeBemVindo(@RequestParam(name = "nome") String nome) {
+        return "Olá "+nome+", Seja muito bem vindo! ";
     }
 }
