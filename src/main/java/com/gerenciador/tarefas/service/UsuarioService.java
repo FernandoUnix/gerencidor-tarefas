@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -43,6 +44,10 @@ public class UsuarioService {
 
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         return this.iUsuarioRepository.save(usuario);
+    }
+
+    public Optional<Usuario> obterUsuarioId(Long ususarioId) {
+        return this.iUsuarioRepository.findById(ususarioId);
     }
 
     public void excluirUsuario(Usuario usuario){
