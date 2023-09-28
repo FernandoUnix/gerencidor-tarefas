@@ -107,6 +107,7 @@ public class GerenciadorTarefasController {
 
     @DeleteMapping(value = "/{id}")
     public void excluirTarefa(@PathVariable Long id){
+
         gerenciadorTarefasService.excluirTarefa(id);
     }
 }
