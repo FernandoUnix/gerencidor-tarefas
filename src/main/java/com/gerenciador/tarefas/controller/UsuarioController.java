@@ -26,7 +26,7 @@ public class UsuarioController {
     public ResponseEntity<String> atualizarUsuario(@RequestBody Usuario usuario){
 
         Usuario usuarioSalvo  = usuarioService.salvarUsuario(usuario);
-        return new ResponseEntity<>("Novo usuário criado "+ usuarioSalvo.getUsername(), HttpStatus.OK);
+        return new ResponseEntity<>("Usuário atualizado "+ usuarioSalvo.getUsername(), HttpStatus.OK);
     }
 
     @GetMapping
