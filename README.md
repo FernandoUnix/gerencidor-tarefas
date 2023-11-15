@@ -1,6 +1,6 @@
 # Criando APIs com Java 17 usando Spring Boot e AWS
 
-Projeto criado para durante um curso na Udemy
+Projeto criado para durante curso na Udemy
 
 Link do curso:
 
