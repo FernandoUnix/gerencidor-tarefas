@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "7b14dad1-5f3c-4256-aded-d9083a3d9cc7",
+		"name": "gerenciador-tarefas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1901548"
+	},
+	"item": [
+		{
+			"name": "testes",
+			"item": [
+				{
+					"name": "teste api",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{LOCALHOST}}/teste-api",
+							"host": [
+								"{{LOCALHOST}}"
+							],
+							"path": [
+								"teste-api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teste bem vindo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{TOKEN}}",
+								"value": "{{Bearer}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCALHOST}}/teste-api-bem-vindo?nome=Fernando Amaro",
+							"host": [
+								"{{LOCALHOST}}"
+							],
+							"path": [
+								"teste-api-bem-vindo"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Fernando Amaro"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Cadastrar Usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "{{TOKEN}}",
+								"value": "{{Bearer}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n        \"username\": \"amaro\",\r\n        \"password\": \"12345\",\r\n        \"roles\": [\r\n            {\r\n                \"nome\": \"ADMINISTRADOR\"\r\n            }\r\n        ]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCALHOST}}/usuarios",
+							"host": [
+								"{{LOCALHOST}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtem Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{TOKEN}}",
+								"value": "{{Bearer}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCALHOST}}/usuarios",
+							"host": [
+								"{{LOCALHOST}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"id\": 1,\r\n        \"username\": \"fernando.amaro\",\r\n        \"password\": \"123456789\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCALHOST}}/usuarios",
+							"host": [
+								"{{LOCALHOST}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Usuarios",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {  \r\n    \"id\": 1\r\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCALHOST}}/usuarios",
+							"host": [
+								"{{LOCALHOST}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Efetua Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Salvar Token', () => {\r",
+									"\r",
+									"    pm.collectionVariables.set(\"Bearer\" , \"\");\r",
+									"\r",
+									"    if (pm.response.to.have.status(200)) {\r",
+									"        pm.collectionVariables.set(\"Bearer\" , pm.response.headers.get('Authorization'))\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\" : \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCALHOST}}/login",
+							"host": [
+								"{{LOCALHOST}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tarefas",
+			"item": [
+				{
+					"name": "Criar Tarefa",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "{{TOKEN}}",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY5NDA5NjY5MiwiYXV0aG9yaXRpZXMiOlsiQURNSU5JU1RSQURPUiIsIlVTVUFSSU8iXX0.i1Yhu_tcb1SubER3p7-ZF0oER-72kmrY5ngzh_bcDFubaVqSBpj9HTTqMlJY85oF3hhakGJ-qtfMCnuUfeRPlQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titulo\" : \"\",\r\n    \"descricao\" : \"primeira tarefa\",\r\n    \"criadorId\" : 1,\r\n    \"quantidadeHorasEstimadas\" : 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCALHOST}}/gerenciador-tarefas",
+							"host": [
+								"{{LOCALHOST}}"
+							],
+							"path": [
+								"gerenciador-tarefas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtem Tarefas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "{{TOKEN}}",
+								"value": "{{Bearer}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCALHOST}}/gerenciador-tarefas?page=0&size=3",
+							"host": [
+								"{{LOCALHOST}}"
+							],
+							"path": [
+								"gerenciador-tarefas"
+							],
+							"query": [
+								{
+									"key": "titulo",
+									"value": "1 tarefa",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Tarefa",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "{{TOKEN}}",
+								"value": "{{Bearer}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"titulo\": \"primeira tarefa\",\r\n            \"descricao\": \"primeira tarefa\",\r\n            \"status\": \"PROGRESSO\",\r\n            \"responsavelId\": \"1\",\r\n            \"quantidadeHorasEstimadas\": 2,\r\n            \"quantidadeHorasRealizada\": null\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCALHOST}}/gerenciador-tarefas/1",
+							"host": [
+								"{{LOCALHOST}}"
+							],
+							"path": [
+								"gerenciador-tarefas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Tarefa",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "{{TOKEN}}",
+								"value": "{{Bearer}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{LOCALHOST}}/gerenciador-tarefas/1",
+							"host": [
+								"{{LOCALHOST}}"
+							],
+							"path": [
+								"gerenciador-tarefas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "Authorization",
+			"value": ""
+		},
+		{
+			"key": "Bearer",
+			"value": ""
+		}
+	]
+}
