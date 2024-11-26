@@ -70,3 +70,104 @@ Execute a classe `main` do projeto `GerenciadorTarefasApplication` localizada em
 
 A collection do Postman está localizada na pasta raiz do projeto com o nome **gerenciador-tarefas.postman_collection.json**.  
 **OBS**: Não se esqueça de criar a variável global `{{LOCALHOST}}` ou substituir `{{LOCALHOST}}` por `localhost:8080` no seu ambiente.
+
+---
+
+# Endpoints da API de Gerenciamento de Tarefas
+
+## 1. **Teste API**
+- **Método**: `GET`
+- **URL**: `/teste-api`
+
+## 2. **Teste Bem-Vindo**
+- **Método**: `GET`
+- **URL**: `/teste-api-bem-vindo?nome={{nome}}`
+
+## 3. **Usuários**
+
+### 3.1 **Cadastrar Usuário**
+- **Método**: `POST`
+- **URL**: `/usuarios`
+- **Corpo**:
+  ```json
+  {
+    "username": "amaro",
+    "password": "12345",
+    "roles": [{ "nome": "ADMINISTRADOR" }]
+  }
+  ```
+
+### 3.2 **Obter Usuários**
+- **Método**: `GET`
+- **URL**: `/usuarios`
+
+### 3.3 **Atualizar Usuário**
+- **Método**: `PUT`
+- **URL**: `/usuarios`
+- **Corpo**:
+  ```json
+  {
+    "id": 1,
+    "username": "fernando.amaro",
+    "password": "123456789"
+  }
+  ```
+
+### 3.4 **Excluir Usuário**
+- **Método**: `DELETE`
+- **URL**: `/usuarios`
+- **Corpo**:
+  ```json
+  { "id": 1 }
+  ```
+
+## 4. **Login**
+
+### 4.1 **Efetuar Login**
+- **Método**: `POST`
+- **URL**: `/login`
+- **Corpo**:
+  ```json
+  {
+    "username": "admin",
+    "password": "123456"
+  }
+  ```
+
+## 5. **Tarefas**
+
+### 5.1 **Criar Tarefa**
+- **Método**: `POST`
+- **URL**: `/gerenciador-tarefas`
+- **Corpo**:
+  ```json
+  {
+    "titulo": "Primeira Tarefa",
+    "descricao": "Descrição da tarefa",
+    "criadorId": 1,
+    "quantidadeHorasEstimadas": 2
+  }
+  ```
+
+### 5.2 **Obter Tarefas**
+- **Método**: `GET`
+- **URL**: `/gerenciador-tarefas?page=0&size=3`
+
+### 5.3 **Atualizar Tarefa**
+- **Método**: `PUT`
+- **URL**: `/gerenciador-tarefas/{id}`
+- **Corpo**:
+  ```json
+  {
+    "titulo": "Tarefa Atualizada",
+    "descricao": "Descrição atualizada",
+    "status": "PROGRESSO",
+    "responsavelId": 1,
+    "quantidadeHorasEstimadas": 2,
+    "quantidadeHorasRealizada": null
+  }
+  ```
+
+### 5.4 **Excluir Tarefa**
+- **Método**: `DELETE`
+- **URL**: `/gerenciador-tarefas/{id}`
