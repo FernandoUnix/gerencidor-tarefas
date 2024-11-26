@@ -70,6 +70,7 @@ Execute a classe `main` do projeto `GerenciadorTarefasApplication` localizada em
 
 A collection do Postman está localizada na pasta raiz do projeto com o nome **gerenciador-tarefas.postman_collection.json**.  
 **OBS**: Não se esqueça de criar a variável global `{{LOCALHOST}}` ou substituir `{{LOCALHOST}}` por `localhost:8080` no seu ambiente.
+- **EDIT**: Também precisamos dessa variável global `{{TOKEN}}` o valor da variável deve ser: Authorization
 
 ---
 
